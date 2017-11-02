@@ -21,11 +21,13 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->library('Template');
-		$this->template->set_theme('admin');
-		$this->template->views('vue_post_2', 'post_6');
+		//$this->template->set_theme('admin');
+		//$this->template->views('vue_post_2', 'post_6');
+		//$this->template->views('vue_output', 'post_2');
+		$this->template->views('vue_post_2', 'post_3');
 		$this->template->view('vue_post_6', 'output');
-		//$this->template->views('vue_output', 'post_6');
-		//$this->template->view('vue_post_2', 'post_4');
+		//
+		//
 		//$this->load->view('welcome_message');
 	}
 }

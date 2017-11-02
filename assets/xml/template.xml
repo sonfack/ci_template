@@ -17,6 +17,8 @@
 				]]>
 			</description>
 			<position>output</position>
+			<position>post_2</position>
+			<position>post_3</position>
 			<position>post_6</position>
 		</theme>
 	</template>
