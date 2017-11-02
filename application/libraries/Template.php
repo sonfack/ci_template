@@ -7,13 +7,18 @@ class Template {
 	
 	public function __construct(){
 		$this->CI = get_instance();
-                $this->CI->load->helper('language');
-		$this->var['output'] = '';
-		$this->var['head'] = '';
-		$this->var['crumb'] = '';
-		$this->var['left'] = '';
-		$this->var['right'] = '';
-		$this->var['foot'] = '';
+        $this->CI->load->helper('language');
+        $folder = $this->CI->config->item('xml_base');
+		// get the themes positions from the template.xml file
+		$template = simplexml_load_file($folder.'template.xml'); 
+		foreach($template as $theme){	
+			if($theme['name'] == $this->theme){
+				foreach($theme->position as $pos){
+					$key = (string)$pos;
+					$this->var[$key] = "";
+				}
+			}
+		}
 		$this->var['titre'] = $this->CI->router->fetch_method();
 		$this->var['charset'] = $this->CI->config->item('charset');
 		$this->var['css'] = array();
@@ -21,82 +26,45 @@ class Template {
 	}
 	
 	
-	public function view($name, $data = array(), $position){ 
-		$module = $this->module ; 
-		switch($position){
-			case 'head':{
-		                $this->var['head'] .= $this->CI->load->view($name, $data, true);
-		                $this->CI->load->view('../themes/' .$module.'/'. $this->theme, $this->var);
-				break ; 	
+	public function view($vue, $position, $data=NULL){ 
+		foreach($this->var as $key=>$value){	
+			if($key === $position){
+				$this->var[$key] .= $this->CI->load->view($vue, $data, true);
+				$this->CI->load->view('../themes/'. $this->theme, $this->var);
 			}
-			case 'left':{
-		                $this->var['left'] .= $this->CI->load->view($name, $data, true);
-		                $this->CI->load->view('../themes/' .$module.'/'. $this->theme, $this->var);
-				break ; 	
-			}
-			case 'right':{
-		                $this->var['right'] .= $this->CI->load->view($name, $data, true);
-		                $this->CI->load->view('../themes/' .$module.'/'. $this->theme, $this->var);
-				break ; 	
-			}
-			case 'foot':{
-		                $this->var['foot'] .= $this->CI->load->view($name, $data, true);
-		                $this->CI->load->view('../themes/' .$module.'/'. $this->theme, $this->var);
-				break ; 	
-			}
-			case 'crumb':{
-		                $this->var['crumb'] .= $this->CI->load->view($name, $data, true);
-		                $this->CI->load->view('../themes/' .$module.'/'. $this->theme, $this->var);
-				break ; 	
-			}
-			default:{ // will be use for the output
-					
-		                $this->var['output'] .= $this->CI->load->view($name, $data, true);
-		                $this->CI->load->view('../themes/' .$module.'/'. $this->theme, $this->var);
-			}
-              }
-              
+		}
 	}
 
-	public function views($name, $data = array(), $position){
-		$module = $this->module ; 
-		switch($position){
-			case 'head':{
-		                $this->var['head'] .= $this->CI->load->view($name, $data, true);
-		                $this->CI->load->view('../themes/' .$module.'/'. $this->theme, $this->var);
-				break ; 	
+	public function views($vue, $position, $data=NULL){ 
+		//var_dump($this->var); 
+		//exit;
+		foreach($this->var as $key=>$value){	
+			if($key === $position){
+				$this->var[$key] .= $this->CI->load->view($vue, $data, true);
 			}
-			case 'left':{
-		                $this->var['left'] .= $this->CI->load->view($name, $data, true);
-		                $this->CI->load->view('../themes/' .$module.'/'. $this->theme, $this->var);
-				break ; 	
-			}
-			case 'right':{
-		                $this->var['right'] .= $this->CI->load->view($name, $data, true);
-		                $this->CI->load->view('../themes/' .$module.'/'. $this->theme, $this->var);
-				break ; 	
-			}
-			case 'foot':{
-		                $this->var['foot'] .= $this->CI->load->view($name, $data, true);
-		                $this->CI->load->view('../themes/' .$module.'/'. $this->theme, $this->var);
-				break ; 	
-			}
-			case 'crumb':{
-		                $this->var['crumb'] .= $this->CI->load->view($name, $data, true);
-		                $this->CI->load->view('../themes/' .$module.'/'. $this->theme, $this->var);
-				break ; 	
-			}
-			default:{ // will be use for the output
-		                $this->var['output'] .= $this->CI->load->view($name, $data, true);
-		                $this->CI->load->view('../themes/' .$module.'/'. $this->theme, $this->var);
-			}
-              }
+		}
 		return $this;
 	}
 
 	public function set_theme($theme){
-		if(is_string($theme) and !empty($theme) and file_exists('../poupailaireress/Myapplications/themes/'.$theme.'.php')){
+		// and file_exists('../themes/'.$theme.'.php')
+		if(is_string($theme) and !empty($theme)){
 			$this->theme = $theme;
+			foreach($this->var as $key=>$value){
+				unset($this->var[$key]);
+			}
+			$this->var = array();
+			$folder = $this->CI->config->item('xml_base');
+			// get the themes positions from the template.xml file
+			$template = simplexml_load_file($folder.'template.xml'); 
+			foreach($template as $theme){	
+				if($theme['name'] == $this->theme){
+					foreach($theme->position as $pos){
+						$key = (string)$pos;
+						$this->var[$key] = "";
+					}
+				}
+			}
 			return true;
 		}
 		return false;

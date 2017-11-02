@@ -133,3 +133,17 @@ $autoload['language'] = array();
 |	$autoload['model'] = array('first_model' => 'first');
 */
 $autoload['model'] = array();
+
+
+/*
+| ------------------------------------------------------------------
+| 	Auto load external file
+| ------------------------------------------------------------------
+| Prototype: 
+|  
+|	$autoload['config'] = array('folder_path') ;
+|
+|
+|
+*/
+$autoload['config'] = array('folder_path') ;
