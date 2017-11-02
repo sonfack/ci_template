@@ -14,3 +14,16 @@ Ce fichier contient les chemens d'acces aux nouveaux elements ajoutés dans notr
 Ajouter le fichier folder_path dans le fichier de configuration _autoload.php_
 $autoload['config'] = array('folder_path') ;
 
+# Comment utiliser le système
+Mettez votre nouveau theme dans le dossier __application/themes/nouveautheme.php__
+Dans le fichier __nouveautheme.php__ definissez les positions des différentes vues qui serons charger dans le nouveau thème
+Definissez les mêmes positions dans votre fichier __assets/xm/template.xml__ 
+	<theme name="admin">
+			<description>
+				<![CDATA[
+					This is the default template for our template system
+				]]>
+			</description>
+			<position>output</position>
+			<position>post_6</position>
+		</theme>	
