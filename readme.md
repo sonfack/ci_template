@@ -27,3 +27,4 @@ Definissez les mêmes positions dans votre fichier __assets/xm/template.xml__
 			<position>output</position>
 			<position>post_6</position>
 		</theme>	
+
