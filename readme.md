@@ -23,13 +23,6 @@ $autoload['config'] = array('folder_path') ;
 Mettez votre nouveau theme dans le dossier __application/themes/nouveautheme.php__
 Dans le fichier __nouveautheme.php__ definissez les positions des différentes vues qui serons charger dans le nouveau thème
 Definissez les mêmes positions dans votre fichier __assets/xm/template.xml__ 
-	<theme name="admin">
-			<description>
-				<![CDATA[
-					This is the default template for our template system
-				]]>
-			</description>
-			<position>output</position>
-			<position>post_6</position>
-		</theme>	
-
+NB: Dans le notre fichier template.xml nous avons un theme par defaut qui est le theme default.php ( se trouve dans application/themes) et pour le test nous avons un second theme appelé admin.php. 
+Chaque theme dispose de ses positions ou seront chargés les vues a partir du controlleur ( $this->template->views($name, $position, $data) ).
+Pour changer de theme au niveau du controlleur on utilise la methode suivante : $this->template->set_theme($nom_du_theme)
