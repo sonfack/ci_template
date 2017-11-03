@@ -9,7 +9,7 @@ créer le fichier Template.php dans le repertoir libraries de votre application
 cette librairie contient des méthodes pour : 
 1. changer de theme de votre application
 2. charger les vues d'un theme donné
-3. charger le titre, les fichiers CSS, les fichiers JS d'un theme 
+3. charger le titre, les fichiers CSS, les fichiers JS d'un theme, etc
 
 ## Le theme  par defaut default.php
 creer le repertoir themes dans le dossier appliction de votre application et y mettre votre fichier default.php 
