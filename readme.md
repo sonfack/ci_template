@@ -1,10 +1,15 @@
 # Présentation du systeme de template
 
 ## Le fichier template.xml
-créer le fichier template.xml dans le repertoir __assets/xml__
+créer le fichier template.xml dans le repertoir __assets/xml__. 
+ce fichier contient une section de balise pour chaque theme de votre application, ainsi que les posssitions ou serons chargées les vues de ce theme 
 
 ## La librairie Template.php
 créer le fichier Template.php dans le repertoir libraries de votre application
+cette librairie contient des méthodes pour : 
+1. changer de theme de votre application
+2. charger les vues d'un theme donné
+3. charger le titre, les fichiers CSS, les fichiers JS d'un theme 
 
 ## Le theme  par defaut default.php
 creer le repertoir themes dans le dossier appliction de votre application et y mettre votre fichier default.php 
