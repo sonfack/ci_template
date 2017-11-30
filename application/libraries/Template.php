@@ -26,7 +26,7 @@ class Template {
 	}
 	
 	
-	public function view($vue, $position, $data=NULL){ 
+	public function view($vue, $position='output', $data=NULL){ 
 		foreach($this->var as $key=>$value){	
 			if($key === $position){
 				$this->var[$key] .= $this->CI->load->view($vue, $data, true);
