@@ -523,4 +523,11 @@ $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
 
 
+/*
+|--------------------------------------------------------------------------
+| template.xml path
+|--------------------------------------------------------------------------
+| Adding the template xml path 
+*/
+
 $config['xml_base'] = './assets/xml/';
